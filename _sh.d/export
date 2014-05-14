@@ -1,0 +1,15 @@
+#### android
+[[ -f $HOME/.sh.d/android ]] && . $HOME/.sh.d/android
+
+#### other
+[[ -f $HOME/.sh.d/other  ]] && . $HOME/.sh.d/other
+
+#### java
+[[ -f $HOME/.sh.d/java  ]] && . $HOME/.sh.d/java
+
+#### python
+[[ -f $HOME/.sh.d/python  ]] && . $HOME/.sh.d/python
+
+#### locales
+[[ -f $HOME/.sh.d/locales  ]] && . $HOME/.sh.d/locales
+[[ -f $HOME/.sh.d/cloudsdk  ]] && . $HOME/.sh.d/cloudsdk
