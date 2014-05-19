@@ -1,3 +1,0 @@
-#### pyenv
-which pyenv > /dev/null
-[[ $? -eq 0 ]] && eval "$(pyenv init -)"

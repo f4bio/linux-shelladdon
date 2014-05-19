@@ -5,6 +5,4 @@
 ##
 ### #######
 
-[[ -f ~/.sh.d/alias ]] && . ~/.sh.d/alias
-[[ -f ~/.sh.d/export ]] && . ~/.sh.d/export
-[[ -f ~/.sh.d/eval ]] && . ~/.sh.d/eval
+[[ -f "$HOME"/.sh.d/run.sh ]] && . "$HOME"/.sh.d/run.sh
