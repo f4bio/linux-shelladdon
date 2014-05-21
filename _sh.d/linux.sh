@@ -11,6 +11,7 @@
 [[ -d $HOME/bin ]] && export PATH=$PATH:$HOME/bin
 
 export NOW=$(date +"%Y-%m-%d_%T")
+setopt NO_HUP
 
 #######
 ## alias
