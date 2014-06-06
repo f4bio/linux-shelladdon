@@ -10,7 +10,7 @@
 [[ -d $PKG_CONFIG_PATH ]] && export PATH=$PATH:$PKG_CONFIG_PATH
 [[ -d $HOME/bin ]] && export PATH=$PATH:$HOME/bin
 
-export NOW=$(date +"%Y-%m-%d_%T")
+export NOW=$(date +"%Y-%m-%d_%H-%M-%S")
 setopt NO_HUP
 
 #######

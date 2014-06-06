@@ -30,3 +30,6 @@
 
 #### python
 [[ -f "$HOME/.sh.d/python.sh" ]] && . "$HOME/.sh.d/python.sh"
+
+#### rtorrent
+[[ -f "$HOME/.sh.d/rtorrent.sh" ]] && . "$HOME/.sh.d/rtorrent.sh"

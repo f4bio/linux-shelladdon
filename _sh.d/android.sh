@@ -10,6 +10,7 @@ fi
 if [ -d "$HOME/.android-sdk" ]; then
 	export ANDROID_HOME="$HOME"/.android-sdk
 fi
+export USE_CCACHE=1
 
 #######
 ## path
@@ -37,7 +38,7 @@ andscreencap() {
 		LOCALPATH="$HOME/android-screencap"
 	fi
 	mkdir -p "$LOCALPATH"
-	TMPIMAGE="$NOW.png"
+	TMPIMAGE="$(date +"%Y-%m-%d_%H-%M-%S").png"
 	adb shell screencap -p "/sdcard/$TMPIMAGE"
 	adb pull "/sdcard/$TMPIMAGE" "$LOCALPATH/$TMPIMAGE" > /dev/null
 	adb shell rm "/sdcard/$TMPIMAGE"
