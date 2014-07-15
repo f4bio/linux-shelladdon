@@ -24,8 +24,9 @@ if [ -d "$ANDROID_HOME/platform-tools" ]; then
 	export PATH="$PATH:$ANDROID_HOME/platform-tools"
 fi
 
-if [ -d "$ANDROID_HOME/build-tools/19.1" ];then
-	export PATH="$PATH:$ANDROID_HOME/build-tools/19.1"
+BUILDTOOLSVERSION=($(ls -vr "$ANDROID_HOME/build-tools"))
+if [ -d "$ANDROID_HOME/build-tools/${BUILDTOOLSVERSION[1]}" ];then
+	export PATH="$PATH:$ANDROID_HOME/build-tools/${BUILDTOOLSVERSION[1]}"
 fi
 
 #######
