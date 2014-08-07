@@ -32,16 +32,11 @@ fi
 #######
 ## alias
 #
-andscreencap() {
-	if [ -d "$HOME/Pictures" ]; then
-		LOCALPATH="$HOME/Pictures/android-screencap"
-	else
-		LOCALPATH="$HOME/android-screencap"
-	fi
-	mkdir -p "$LOCALPATH"
+androidscreencap() {
+	mkdir -p "$(pwd)/android-screencap"
 	TMPIMAGE="$(date +"%Y-%m-%d_%H-%M-%S").png"
 	adb shell screencap -p "/sdcard/$TMPIMAGE"
-	adb pull "/sdcard/$TMPIMAGE" "$LOCALPATH/$TMPIMAGE" > /dev/null
+	adb pull "/sdcard/$TMPIMAGE" "$(pwd)/android-screencap" > /dev/null
 	adb shell rm "/sdcard/$TMPIMAGE"
-	echo "done! $LOCALPATH/$TMPIMAGE"
+	echo "done! $(pwd)/$TMPIMAGE"
 }

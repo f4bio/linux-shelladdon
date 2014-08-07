@@ -33,3 +33,6 @@
 
 #### rtorrent
 [[ -f "$HOME/.sh.d/rtorrent.sh" ]] && . "$HOME/.sh.d/rtorrent.sh"
+
+#### video
+[[ -f "$HOME/.sh.d/rtorrent.sh" ]] && . "$HOME/.sh.d/video.sh"
