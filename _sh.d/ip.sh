@@ -2,7 +2,9 @@
 ## alias updates
 #
 ip2country() {
-	curl -s -S --max-time 20 ipinfo.io/"$1" | jshon -e "country" -u
+	curl -s -S --max-time 20 ipinfo.io/"$1" | jshon -e "country" -u ; echo
 }
-alias my-public-ip="curl -s -S --max-time 20 http://ipecho.net/plain"
+my-public-ip() {
+	curl -s -S --max-time 20 http://ipecho.net/plain ; echo
+}
 alias my-ip-location="geoiplookup"
