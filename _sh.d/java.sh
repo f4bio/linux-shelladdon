@@ -1,19 +1,9 @@
 #######
 ## java environment
 #
-if [ -d /opt/java ]; then
-	export JAVA8_HOME=/opt/java
+if [ -d /usr/lib/jvm/default ]; then
+	export JAVA_HOME=/usr/lib/jvm/default
 fi
-if [ -d /opt/java6 ]; then
-	export JAVA6_HOME=/opt/java6
-fi
-if [ -d /opt/java7 ]; then
-	export JAVA7_HOME=/opt/java7
-fi
-
-export JAVA_HOME="$JAVA6_HOME"
-#export JAVA_HOME="$JAVA7_HOME"
-#export JAVA_HOME="$JAVA8_HOME"
 
 if [ -d "$JAVA_HOME"/jre ]; then
 	export J2REDIR=/opt/java/jre
