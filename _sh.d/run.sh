@@ -35,4 +35,7 @@
 [[ -f "$HOME/.sh.d/rtorrent.sh" ]] && . "$HOME/.sh.d/rtorrent.sh"
 
 #### video
-[[ -f "$HOME/.sh.d/rtorrent.sh" ]] && . "$HOME/.sh.d/video.sh"
+[[ -f "$HOME/.sh.d/video.sh" ]] && . "$HOME/.sh.d/video.sh"
+
+#### go
+[[ -f "$HOME/.sh.d/go.sh" ]] && . "$HOME/.sh.d/go.sh"
