@@ -9,10 +9,11 @@
 ###
 
 shelladdonload() {
-	if [ $(ls -1 "$HOME"/.sh.d/conf-enabled | wc -w) -eq 0 ]; then
+	mkdir -p "$HOME/.sh.d/conf-enabled"
+	if [ $(ls -1 "$HOME/.sh.d/conf-enabled" | wc -w) -eq 0 ]; then
 		return
 	fi
-	for enabled in "$HOME"/.sh.d/conf-enabled/*; do
+	for enabled in "$HOME/.sh.d/conf-enabled"/*; do
 		source $enabled
 	done
 }
@@ -28,11 +29,11 @@ shelladdonlist() {
 	done
 }
 shelladdonenable() {
-	ln -s "$HOME"/.sh.d/conf-available/"$1" "$HOME"/.sh.d/conf-enabled/"$1"
+	ln -s "$HOME/.sh.d/conf-available/$1" "$HOME/.sh.d/conf-enabled/$1"
 }
 shelladdondisable() {
-	if [ -L "$HOME"/.sh.d/conf-enabled/"$1" ]; then
-		rm "$HOME"/.sh.d/conf-enabled/"$1"
+	if [ -L "$HOME/.sh.d/conf-enabled/$1" ]; then
+		rm "$HOME/.sh.d/conf-enabled/$1"
 	fi
 }
 

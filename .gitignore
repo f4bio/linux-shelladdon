@@ -3,7 +3,7 @@
 ##	project related
 ##	
 ##### #####################
-_sh.d/conf-enabled/*
+conf-enabled/
 
 ###### ################
 ##
