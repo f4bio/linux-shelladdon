@@ -9,11 +9,12 @@
 ###
 
 shelladdonload() {
-	if [ -f "$HOME"/.sh.d/conf-enabled/* ]; then
-		for enabled in "$HOME"/.sh.d/conf-enabled/*; do
-			echo "loading: $enabled"
-		done
+	if [ $(ls -1 "$HOME"/.sh.d/conf-enabled | wc -w) -eq 0 ]; then
+		return
 	fi
+	for enabled in "$HOME"/.sh.d/conf-enabled/*; do
+		source $enabled
+	done
 }
 shelladdonlist() {
 	echo "available scripts (+enabled/-disabled)"
@@ -26,15 +27,23 @@ shelladdonlist() {
 		fi
 	done
 }
+shelladdonenable() {
+	ln -s "$HOME"/.sh.d/conf-available/"$1" "$HOME"/.sh.d/conf-enabled/"$1"
+}
+shelladdondisable() {
+	if [ -L "$HOME"/.sh.d/conf-enabled/"$1" ]; then
+		rm "$HOME"/.sh.d/conf-enabled/"$1"
+	fi
+}
 
 shelladdon() {
 	if [ "$1" = "enable" ]; then
-		ln -s "$HOME"/.sh.d/conf-available/"$2".sh "$HOME"/.sh.d/conf-enabled/"$2"
+		shelladdondisable "$2"
+		shelladdonenable "$2"
 		shelladdonload
 	elif [ "$1" = "disable" ]; then
-		rm "$HOME"/.sh.d/conf-enabled/"$2"
+		shelladdondisable "$2"
 		shelladdonload
-
 	elif [ "$1" = "list" ]; then
 		shelladdonlist
 	elif [ "$1" = "init" ]; then
