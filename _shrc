@@ -1,9 +1,0 @@
-### ###############
-## 
-## put at the end of shells ".rc"
-## e.g. ~/.zshrc or ~/.bashrc 
-##
-### #######
-
-[[ -f "$HOME"/.sh.d/run.sh ]] && . "$HOME"/.sh.d/run.sh
-

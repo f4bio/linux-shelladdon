@@ -1,0 +1,53 @@
+#!/bin/bash
+
+### ###############
+## 
+#	$ ln -s <PATH_TO_THIS_FILE> $HOME/.shelladdonrc
+#	put "source $HOME/.shelladdonrc" at the end of shells ".rc"
+#	e.g. ~/.zshrc or ~/.bashrc 
+#
+###
+
+shelladdonload() {
+	if [ -f "$HOME"/.sh.d/conf-enabled/* ]; then
+		for enabled in "$HOME"/.sh.d/conf-enabled/*; do
+			echo "loading: $enabled"
+		done
+	fi
+}
+shelladdonlist() {
+	echo "available scripts (+enabled/-disabled)"
+	for available in "$HOME"/.sh.d/conf-available/*; do
+		SCRIPTNAME=$(basename $available)
+		if [ -L "$HOME"/.sh.d/conf-enabled/"$SCRIPTNAME" ]; then
+			echo -e "\t+ $SCRIPTNAME"
+		else
+			echo -e "\t- $SCRIPTNAME"
+		fi
+	done
+}
+
+shelladdon() {
+	if [ "$1" = "enable" ]; then
+		ln -s "$HOME"/.sh.d/conf-available/"$2".sh "$HOME"/.sh.d/conf-enabled/"$2"
+		shelladdonload
+	elif [ "$1" = "disable" ]; then
+		rm "$HOME"/.sh.d/conf-enabled/"$2"
+		shelladdonload
+
+	elif [ "$1" = "list" ]; then
+		shelladdonlist
+	elif [ "$1" = "init" ]; then
+		shelladdonload
+	else
+		echo "usage: shelladdon [enable|disable|init] [<NAME>]"
+		read && return
+	fi
+}
+
+### ###############
+## 
+#	load all scripts
+#
+###
+shelladdonload
