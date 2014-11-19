@@ -40,5 +40,5 @@ androidscreencap() {
 	adb shell screencap -p "/sdcard/$TMPIMAGE"
 	adb pull "/sdcard/$TMPIMAGE" "$(pwd)/android-screencap" > /dev/null
 	adb shell rm "/sdcard/$TMPIMAGE"
-	echo "done! $(pwd)/$TMPIMAGE"
+	echo "done! $(pwd)/android-screencap/$TMPIMAGE"
 }

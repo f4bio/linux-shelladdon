@@ -6,8 +6,13 @@ if [ -d /usr/lib/jvm/default ]; then
 fi
 
 if [ -d "$JAVA_HOME"/jre ]; then
-	export J2REDIR=/opt/java/jre
+	export JRE_HOME="$JAVA_HOME"/jre
 fi
+
+if [ -f "$JAVA_HOME"/bin/javac ]; then
+	export JDK_HOME="$JAVA_HOME"
+fi
+
 if [ -d "$JAVA_HOME"/db ];then
 	export DERBY_HOME="$JAVA_HOME"/db
 fi
