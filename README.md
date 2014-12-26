@@ -10,4 +10,4 @@ linux-shelladdon
 * setup example for zsh
 	* `$ ln -s /path/to/git/cloned/repo/_shelladdonrc $HOME/.shelladdonrc`
 	* `$ ln -s /path/to/git/cloned/repo/_sh.d $HOME/.sh.d`
-	* `$ echo "source \$HOME/.shelladdonrc" | tee $HOME/.zshrc`
+	* `$ echo "source \$HOME/.shelladdonrc" | tee -a $HOME/.zshrc`
