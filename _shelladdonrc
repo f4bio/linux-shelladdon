@@ -1,63 +1,63 @@
 #!/bin/bash
 
 ### ###############
-## 
+##
 #	$ ln -s <PATH_TO_THIS_FILE> $HOME/.shelladdonrc
 #	put "source $HOME/.shelladdonrc" at the end of shells ".rc"
-#	e.g. ~/.zshrc or ~/.bashrc 
+#	e.g. ~/.zshrc or ~/.bashrc
 #
 ###
 
-shelladdonload() {
-	mkdir -p "$HOME/.sh.d/conf-enabled"
-	if [ $(ls -1 "$HOME/.sh.d/conf-enabled" | wc -w) -eq 0 ]; then
-		return
-	fi
-	for enabled in "$HOME/.sh.d/conf-enabled"/*; do
-		source $enabled
-	done
-}
-shelladdonlist() {
-	echo "available scripts (+enabled/-disabled)"
-	for available in "$HOME"/.sh.d/conf-available/*; do
-		SCRIPTNAME=$(basename $available)
-		if [ -L "$HOME"/.sh.d/conf-enabled/"$SCRIPTNAME" ]; then
-			echo -e "\t+ $SCRIPTNAME"
-		else
-			echo -e "\t- $SCRIPTNAME"
-		fi
-	done
-}
-shelladdonenable() {
-	ln -s "$HOME/.sh.d/conf-available/$1" "$HOME/.sh.d/conf-enabled/$1"
-}
-shelladdondisable() {
-	if [ -L "$HOME/.sh.d/conf-enabled/$1" ]; then
-		rm "$HOME/.sh.d/conf-enabled/$1"
-	fi
-}
-
 shelladdon() {
-	if [ "$1" = "enable" ]; then
-		shelladdondisable "$2"
-		shelladdonenable "$2"
-		shelladdonload
-	elif [ "$1" = "disable" ]; then
-		shelladdondisable "$2"
-		shelladdonload
-	elif [ "$1" = "list" ]; then
-		shelladdonlist
-	elif [ "$1" = "init" ]; then
-		shelladdonload
+	action=${@[*]:1:1}
+
+	if [ "$action" = "enable" ]; then
+		for script in "$@"; do
+			if [ -f "$HOME/.sh.d/conf-available/$script.sh" ] && [ ! -L "$HOME/.sh.d/conf-enabled/$script.sh" ]; then
+				ln -s "$HOME/.sh.d/conf-available/$script.sh" "$HOME/.sh.d/conf-enabled/$script.sh" > /dev/null
+				source "$HOME/.sh.d/conf-enabled/$script.sh"
+			fi
+		done
+
+	elif [ "$action" = "disable" ]; then
+		for script in "$@"; do
+			if [ -f "$HOME/.sh.d/conf-available/$script.sh" ] && [ -L "$HOME/.sh.d/conf-enabled/$script.sh" ]; then
+				rm "$HOME/.sh.d/conf-enabled/$script.sh"
+			fi
+		done
+
+	elif [ "$action" = "list" ]; then
+		echo "available scripts (+enabled/-disabled)"
+		for available in "$HOME/.sh.d/conf-available/"*; do
+			SCRIPTNAME=$(basename $available)
+			if [ -f "$HOME/.sh.d/conf-available/$SCRIPTNAME" ] && [ -L "$HOME/.sh.d/conf-enabled/$SCRIPTNAME" ]; then
+				echo -e "\t+ ${SCRIPTNAME:0:-3}"
+			elif [ -f "$HOME/.sh.d/conf-available/$SCRIPTNAME" ]; then
+				echo -e "\t- ${SCRIPTNAME:0:-3}"
+			fi
+		done
+
+	elif [ "$action" = "init" ]; then
+		if [ $(find "$HOME"/.sh.d/conf-enabled -name "*.sh" | wc -l) ]; then
+			return 0
+		fi
+		for enabled in "$HOME/.sh.d/conf-enabled/"*; do
+			if [ -f "$enabled" ]; then
+				source $enabled
+			else
+				rm "$enabled"
+			fi
+		done
+
 	else
 		echo "usage: shelladdon [enable|disable|init] [<NAME>]"
-		read && return
+		return 1
 	fi
 }
 
 ### ###############
-## 
+##
 #	load all scripts
 #
 ###
-shelladdonload
+shelladdon init
