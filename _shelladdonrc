@@ -8,7 +8,7 @@
 #
 ###
 
-shelladdon() {
+function shelladdon {
 	action=${@[*]:1:1}
 
 	if [ "$action" = "enable" ]; then
@@ -38,7 +38,7 @@ shelladdon() {
 		done
 
 	elif [ "$action" = "init" ]; then
-		if [ $(find "$HOME"/.sh.d/conf-enabled -name "*.sh" | wc -l) ]; then
+		if [ $(find "$HOME"/.sh.d/conf-enabled -name "*.sh" | wc -l) = 0 ]; then
 			return 0
 		fi
 		for enabled in "$HOME/.sh.d/conf-enabled/"*; do
