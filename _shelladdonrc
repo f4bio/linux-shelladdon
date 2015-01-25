@@ -41,7 +41,7 @@ function shelladdon {
 		if [ $(find "$HOME"/.sh.d/conf-enabled -name "*.sh" | wc -l) = 0 ]; then
 			return 0
 		fi
-		for enabled in "$HOME/.sh.d/conf-enabled/"*; do
+		for enabled in "$HOME/.sh.d/conf-enabled/"*; dot
 			if [ -f "$enabled" ]; then
 				source $enabled
 			else
