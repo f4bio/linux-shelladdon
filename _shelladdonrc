@@ -41,14 +41,13 @@ function shelladdon {
 		if [ $(find "$HOME"/.sh.d/conf-enabled -name "*.sh" | wc -l) = 0 ]; then
 			return 0
 		fi
-		for enabled in "$HOME/.sh.d/conf-enabled/"*; dot
+		for enabled in "$HOME/.sh.d/conf-enabled/"*; do
 			if [ -f "$enabled" ]; then
 				source $enabled
 			else
 				rm "$enabled"
 			fi
 		done
-
 	else
 		echo "usage: shelladdon [enable|disable|init] [<NAME>]"
 		return 1
