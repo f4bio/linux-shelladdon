@@ -1,14 +1,17 @@
 #######
 ## environment
 #
-if [ -d /opt/android-sdk ]; then
+if [ -d "/opt/android-sdk" ]; then
+	export ANDROID_HOME=/opt/android-sdk
+fi
+if [ -d "/opt/android-sdk-linux" ]; then
 	export ANDROID_HOME=/opt/android-sdk
 fi
 if [ -d "$HOME/.android-sdk-linux" ]; then
-	export ANDROID_HOME="$HOME"/.android-sdk-linux
+	export ANDROID_HOME=$HOME/.android-sdk-linux
 fi
 if [ -d "$HOME/.android-sdk" ]; then
-	export ANDROID_HOME="$HOME"/.android-sdk
+	export ANDROID_HOME=$HOME/.android-sdk
 fi
 export USE_CCACHE=1
 
