@@ -5,7 +5,7 @@ if [ -d "/opt/android-sdk" ]; then
 	export ANDROID_HOME=/opt/android-sdk
 fi
 if [ -d "/opt/android-sdk-linux" ]; then
-	export ANDROID_HOME=/opt/android-sdk
+	export ANDROID_HOME=/opt/android-sdk-linux
 fi
 if [ -d "$HOME/.android-sdk-linux" ]; then
 	export ANDROID_HOME=$HOME/.android-sdk-linux
@@ -18,7 +18,7 @@ export USE_CCACHE=1
 #######
 ## path
 #
-if [ -d "$ANDROID_HOME/tools" ];then
+if [ -d "$ANDROID_HOME/tools" ]; then
 	export PATH="$PATH:$ANDROID_HOME/tools"
 	export ANDROID_SWT="$ANDROID_HOME/tools/lib/$(uname -m)"
 fi
@@ -29,7 +29,7 @@ fi
 
 if [ -d "$ANDROID_HOME/build-tools" ]; then
 	BUILDTOOLSVERSION=($(ls -vr "$ANDROID_HOME/build-tools"))
-	if [ -d "$ANDROID_HOME/build-tools/${BUILDTOOLSVERSION[1]}" ];then
+	if [ -d "$ANDROID_HOME/build-tools/${BUILDTOOLSVERSION[1]}" ]; then
 		export PATH="$PATH:$ANDROID_HOME/build-tools/${BUILDTOOLSVERSION[1]}"
 	fi
 fi
