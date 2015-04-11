@@ -38,6 +38,9 @@ function shelladdon {
 		done
 
 	elif [ "$action" = "init" ]; then
+		if [ ! -d  "$HOME"/.sh.d/conf-enabled ]; then
+			mkdir -p "$HOME"/.sh.d/conf-enabled
+		fi
 		if [ $(find "$HOME"/.sh.d/conf-enabled -name "*.sh" | wc -l) = 0 ]; then
 			return 0
 		fi
