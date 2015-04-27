@@ -37,10 +37,7 @@ function shelladdon {
 			fi
 		done
 
-	elif [ "$action" = "init" ]; then
-		if [ ! -d  "$HOME"/.sh.d/conf-enabled ]; then
-			mkdir -p "$HOME"/.sh.d/conf-enabled
-		fi
+	elif [ "$action" = "update" ]; then
 		if [ $(find "$HOME"/.sh.d/conf-enabled -name "*.sh" | wc -l) = 0 ]; then
 			mkdir -p "$HOME/.sh.d/conf-enabled"
 			return 0
@@ -53,14 +50,7 @@ function shelladdon {
 			fi
 		done
 	else
-		echo "usage: shelladdon [enable|disable|init] [<NAME>]"
+		echo "usage: shelladdon [enable|disable|update] [<NAME>]"
 		return 1
 	fi
 }
-
-### ###############
-##
-#	load all scripts
-#
-###
-shelladdon init
