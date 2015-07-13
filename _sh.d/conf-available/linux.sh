@@ -16,4 +16,5 @@ setopt NO_HUP
 ## alias
 #
 alias psa="ps aux | grep"
-alias sn="sudo netstat -tulpen | grep"
+alias sng="sudo netstat -tulpen | grep"
+alias sn="sudo netstat -tulpen"

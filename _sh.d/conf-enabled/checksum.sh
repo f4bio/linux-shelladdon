@@ -1,0 +1,1 @@
+/home/fftt/.sh.d/conf-available/checksum.sh
